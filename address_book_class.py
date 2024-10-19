@@ -1,5 +1,5 @@
 from collections import UserDict
-from datetime import date
+from datetime import datetime
 from record_class import Record
 from dater_class import Dater
 
@@ -23,26 +23,12 @@ class AddressBook(UserDict):
         except KeyError:
             return f'Name {name} is not in your phonebook'
         
-    # def find_next_weekday(self, start_date, weekday):
-    #     days_ahead = weekday - start_date.weekday()
-    #     if days_ahead <= 0:
-    #         days_ahead += 7
-    #     return start_date + timedelta(days=days_ahead)
-        
-    # def adjust_for_weekend(self, birthday):
-    #     if birthday.weekday() >= 5:
-    #         return self.find_next_weekday(birthday, 0)
-    #     return birthday
-
-    # def date_to_string(self, date):
-    #     return date.strftime("%Y.%m.%d")
-        
     def get_upcoming_birthdays(self, days=7):
         upcoming_birthdays = []
-        today = date.today()
+        today = datetime.today()
 
-        for user in self.data.values:
-            birthday_this_year = user["birthday"].replace(year=today.year)
+        for user in self.data.values():
+            birthday_this_year = user.birthday.value.replace(year=today.year)
 
             if birthday_this_year<today:
                 birthday_this_year=birthday_this_year.replace(year=today.year+1)
@@ -52,4 +38,4 @@ class AddressBook(UserDict):
                 congratulation_date_str = Dater.date_to_string(birthday_this_year)
                 upcoming_birthdays.append({"name": user["name"], "birthday": congratulation_date_str})
 
-        return upcoming_birthdays
+        return f'upcoming birthdays: {upcoming_birthdays}'
