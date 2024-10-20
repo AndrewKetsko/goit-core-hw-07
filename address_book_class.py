@@ -36,6 +36,6 @@ class AddressBook(UserDict):
             if 0 <= (birthday_this_year - today).days <= days:
                 birthday_this_year=Dater.adjust_for_weekend(birthday_this_year)
                 congratulation_date_str = Dater.date_to_string(birthday_this_year)
-                upcoming_birthdays.append({"name": user["name"], "birthday": congratulation_date_str})
+                upcoming_birthdays.append({"name": user.name.value, "birthday": congratulation_date_str})
 
         return f'upcoming birthdays: {upcoming_birthdays}'

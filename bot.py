@@ -25,9 +25,11 @@ class Bot:
 
     @input_error
     def __change_contact(self,args):
-        name,phone=args
+        name,old_phone, new_phone=args
         record=self.book.find(name)
-        record.add_phone(phone)
+        if not record:
+            raise KeyError
+        record.edit_phone(old_phone, new_phone)
         return('contact changed')
 
     @input_error

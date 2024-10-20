@@ -1,4 +1,3 @@
-from dater_class import Dater
 from name_class import Name
 from phone_class import Phone
 from birthday_class import Birthday
@@ -23,7 +22,6 @@ class Record:
             self.phones.append(phone)
 
     def remove_phone(self, phone_str:str)->None:
-        phone=Phone(phone_str)
         try:
             index=self.__phonelist_from_instancelist().index(phone_str) #raise ValueError if not found
             self.phones.pop(index)
@@ -31,7 +29,6 @@ class Record:
             pass
 
     def find_phone(self,phone_str:str)->Phone|None:
-        phone=Phone(phone_str) 
         try:
             index=self.__phonelist_from_instancelist().index(phone_str) #raise ValueError if not found
             return self.phones[index] 
@@ -39,8 +36,10 @@ class Record:
             return None
 
     def edit_phone(self, old_phone_str:str, new_phone_str:str)->None:
-        old_phone=Phone(old_phone_str)
         new_phone=Phone(new_phone_str)
+        if new_phone_str in [phone.value for phone in self.phones]:
+            self.remove_phone(old_phone_str)
+            return
         index=self.__phonelist_from_instancelist().index(old_phone_str) #raise ValueError if not found
         self.phones[index]=new_phone
 
