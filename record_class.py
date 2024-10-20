@@ -47,4 +47,4 @@ class Record:
         self.birthday=Birthday(value)
 
     def show_birthday(self):
-        return f"Contact name: {self.name.value}, birthday: {self.birthday}"
+        return f"Contact name: {self.name.value}, birthday: {self.birthday.value}"

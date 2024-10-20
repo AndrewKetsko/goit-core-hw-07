@@ -2,9 +2,10 @@ from datetime import datetime
 from field_class import Field
 
 class Birthday(Field):
-    def __init__(self,value):
+    def __init__(self,value:str):
         try:
-            self.value = datetime.strptime(value,'%d.%m.%Y')
+            datetime.strptime(value,'%d.%m.%Y')
+            self.value = value
         except ValueError:
             raise ValueError("Invalid date format. Use DD.MM.YYYY")
         

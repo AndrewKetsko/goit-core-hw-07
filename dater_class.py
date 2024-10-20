@@ -18,4 +18,4 @@ class Dater:
     
     @staticmethod
     def date_to_string(date):
-        return date.strftime("%Y.%m.%d")
+        return date.strftime("%d.%m.%Y")

@@ -31,7 +31,9 @@ class AddressBook(UserDict[str,T]):
         today = datetime.today()
 
         for user in self.data.values():
-            birthday_this_year = user.birthday.value.replace(year=today.year)
+            if not user.birthday:
+                continue
+            birthday_this_year = datetime.strptime(user.birthday.value,'%d.%m.%Y').replace(year=today.year)
 
             if birthday_this_year<today:
                 birthday_this_year=birthday_this_year.replace(year=today.year+1)
