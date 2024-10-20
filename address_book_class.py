@@ -2,8 +2,11 @@ from collections import UserDict
 from datetime import datetime
 from record_class import Record
 from dater_class import Dater
+from typing import TypeVar
 
-class AddressBook(UserDict):
+T=TypeVar('T',bound='Record')
+
+class AddressBook(UserDict[str,T]):
 
     def __str__(self):
         list=''
